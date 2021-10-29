@@ -35,7 +35,7 @@ export function EmployeeProvider({ children }: IEmployeeProviderProps) {
     }, 1500);
   }, []);
 
-  function fetchEmployees() {
+  const fetchEmployees = useCallback(() => {
     setIsLoading(true);
     setTimeout(async () => {
       const { data } = await api.get<IEmployee[]>("employees");
@@ -43,7 +43,7 @@ export function EmployeeProvider({ children }: IEmployeeProviderProps) {
       setEmployees(data);
       setIsLoading(false);
     }, 1500);
-  }
+  }, []);
 
   useEffect(() => {
     fetchEmployees();
@@ -51,7 +51,7 @@ export function EmployeeProvider({ children }: IEmployeeProviderProps) {
     return () => {
       setEmployees([]);
     };
-  }, []);
+  }, [fetchEmployees]);
 
   return (
     <EmployeeContext.Provider
