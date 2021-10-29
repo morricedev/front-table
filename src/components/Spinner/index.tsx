@@ -1,5 +1,5 @@
-import "./style.css";
+import * as S from "./styles";
 
 export function Spinner() {
-  return <div className="spinner" />;
+  return <S.Spinner />;
 }

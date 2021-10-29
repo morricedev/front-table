@@ -1,4 +1,5 @@
-import "./style.css";
+import * as S from "./styles";
+
 import { useEmployee } from "../../hooks/useEmployee";
 import { formatDate } from "../../utils/formatDate";
 import { formatPhone } from "../../utils/formatPhone";
@@ -8,11 +9,11 @@ export function EmployeesList() {
   const { employees, isLoading } = useEmployee();
 
   return (
-    <div className="employeesTable">
+    <S.EmployeesListContainer>
       {isLoading ? (
         <Spinner />
       ) : (
-        <table>
+        <S.EmployeesTable>
           <thead>
             <tr>
               <th>Foto</th>
@@ -42,8 +43,8 @@ export function EmployeesList() {
               ))
             )}
           </tbody>
-        </table>
+        </S.EmployeesTable>
       )}
-    </div>
+    </S.EmployeesListContainer>
   );
 }

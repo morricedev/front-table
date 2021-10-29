@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { FaSearch, FaTimes } from "react-icons/fa";
 import { useEmployee } from "../../hooks/useEmployee";
 
-import "./style.css";
+import * as S from "./styles";
 
 export function SearchContainer() {
   const searchInput = useRef<HTMLInputElement | null>(null);
@@ -24,30 +24,22 @@ export function SearchContainer() {
   };
 
   return (
-    <div className="searchContainer">
-      <h1>Funcionários</h1>
+    <S.SearchContainer>
+      <S.Heading>Funcionários</S.Heading>
 
-      <div className="search">
-        <input ref={searchInput} type="text" placeholder="Pesquisar" />
+      <S.Search>
+        <S.SearchInput ref={searchInput} type="text" placeholder="Pesquisar" />
 
-        <button
-          disabled={isLoading}
-          className="submitSearch"
-          onClick={handleSearch}
-        >
+        <S.SearchButton disabled={isLoading} onClick={handleSearch}>
           <FaSearch />
-        </button>
+        </S.SearchButton>
 
         {searchInput.current?.value && (
-          <button
-            disabled={isLoading}
-            className="resetSearch"
-            onClick={handleResetSearch}
-          >
+          <S.ResetSearchButton disabled={isLoading} onClick={handleResetSearch}>
             <FaTimes />
-          </button>
+          </S.ResetSearchButton>
         )}
-      </div>
-    </div>
+      </S.Search>
+    </S.SearchContainer>
   );
 }
