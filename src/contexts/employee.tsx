@@ -28,7 +28,7 @@ export function EmployeeProvider({ children }: IEmployeeProviderProps) {
   const searchEmployees = useCallback((query: string) => {
     setIsLoading(true);
     setTimeout(async () => {
-      const { data } = await api.get<IEmployee[]>(`employees?name=${query}`);
+      const { data } = await api.get<IEmployee[]>(`employees?q=${query}`);
 
       setEmployees(data);
       setIsLoading(false);
