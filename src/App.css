@@ -6,11 +6,11 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  background-color: #f0f0f0;
 }
 
 main {
-  height: 100vh;
+  height: 100%;
 
   padding: 40px 32px;
-  background-color: #f0f0f0;
 }
