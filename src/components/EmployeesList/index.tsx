@@ -24,17 +24,23 @@ export function EmployeesList() {
           </thead>
 
           <tbody>
-            {employees?.map((employee) => (
-              <tr key={employee.id}>
-                <td>
-                  <img src={employee.image} alt={employee.name} />
-                </td>
-                <td>{employee.name}</td>
-                <td>{employee.job}</td>
-                <td>{formatDate(employee.admission_date)}</td>
-                <td>{formatPhone(employee.phone)}</td>
+            {employees?.length === 0 ? (
+              <tr>
+                <td colSpan={5}>Funcionários não foram encontrados</td>
               </tr>
-            ))}
+            ) : (
+              employees?.map((employee) => (
+                <tr key={employee.id}>
+                  <td>
+                    <img src={employee.image} alt={employee.name} />
+                  </td>
+                  <td>{employee.name}</td>
+                  <td>{employee.job}</td>
+                  <td>{formatDate(employee.admission_date)}</td>
+                  <td>{formatPhone(employee.phone)}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       )}
