@@ -1,31 +1,43 @@
 import "./style.css";
+import { useEmployee } from "../../hooks/useEmployee";
+import { formatDate } from "../../utils/formatDate";
+import { formatPhone } from "../../utils/formatPhone";
+import { Spinner } from "../Spinner";
 
 export function EmployeesList() {
+  const { employees, isLoading } = useEmployee();
+
   return (
     <div className="employeesTable">
-      <table>
-        <thead>
-          <tr>
-            <th>Foto</th>
-            <th>Nome</th>
-            <th>Cargo</th>
-            <th>Data de admissão</th>
-            <th>Telefone</th>
-          </tr>
-        </thead>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Foto</th>
+              <th>Nome</th>
+              <th>Cargo</th>
+              <th>Data de admissão</th>
+              <th>Telefone</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <tr>
-            <td>
-              <img src="http://lorempixel.com/200/200/people/2/" />
-            </td>
-            <td>Pessoa qualquer</td>
-            <td>Front-end</td>
-            <td>00/00/0000</td>
-            <td>+55 (55) 55555-5555</td>
-          </tr>
-        </tbody>
-      </table>
+          <tbody>
+            {employees?.map((employee) => (
+              <tr key={employee.id}>
+                <td>
+                  <img src={employee.image} alt={employee.name} />
+                </td>
+                <td>{employee.name}</td>
+                <td>{employee.job}</td>
+                <td>{formatDate(employee.admission_date)}</td>
+                <td>{formatPhone(employee.phone)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
