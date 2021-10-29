@@ -9,7 +9,7 @@ export function SearchContainer() {
   const { isLoading, searchEmployees, fetchEmployees } = useEmployee();
 
   const handleSearch = () => {
-    const inputValue = searchInput.current?.value;
+    const inputValue = searchInput.current?.value.trim();
     if (!inputValue) return;
 
     searchEmployees(inputValue);
