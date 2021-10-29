@@ -28,7 +28,7 @@ export function SearchContainer() {
       <h1>Funcionários</h1>
 
       <div className="search">
-        <input ref={searchInput} type="text" placeholder="Pesquisar por nome" />
+        <input ref={searchInput} type="text" placeholder="Pesquisar" />
 
         <button
           disabled={isLoading}
