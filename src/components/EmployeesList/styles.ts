@@ -16,7 +16,12 @@ export const EmployeesTable = styled.table`
     width: 100%;
 
     & tr {
-      box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
+      transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+      -webkit-box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
     }
 
     & thead th {
@@ -40,6 +45,7 @@ export const EmployeesTable = styled.table`
       background-color: ${theme.colors.white};
       padding: 0.5rem 1rem;
       font-weight: 400;
+      font-color: ${theme.colors.black};
 
       & img {
         height: 3.5rem;
