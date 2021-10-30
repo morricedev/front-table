@@ -1,9 +1,10 @@
 import * as S from "./styles";
 
 import { useEmployee } from "../../hooks/useEmployee";
+import { Spinner } from "../Spinner";
+
 import { formatDate } from "../../utils/formatDate";
 import { formatPhone } from "../../utils/formatPhone";
-import { Spinner } from "../Spinner";
 
 export function EmployeesList() {
   const { employees, isLoading } = useEmployee();
