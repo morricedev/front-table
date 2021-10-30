@@ -30,17 +30,19 @@ export function EmployeesList() {
                 <td colSpan={5}>Funcionários não foram encontrados</td>
               </tr>
             ) : (
-              employees?.map((employee) => (
-                <tr key={employee.id}>
-                  <td>
-                    <img src={employee.image} alt={employee.name} />
-                  </td>
-                  <td>{employee.name}</td>
-                  <td>{employee.job}</td>
-                  <td>{formatDate(employee.admission_date)}</td>
-                  <td>{formatPhone(employee.phone)}</td>
-                </tr>
-              ))
+              employees?.map(
+                ({ id, image, name, job, admission_date, phone }) => (
+                  <tr key={id}>
+                    <td>
+                      <img src={image} alt={name} />
+                    </td>
+                    <td>{name}</td>
+                    <td>{job}</td>
+                    <td>{formatDate(admission_date)}</td>
+                    <td>{formatPhone(phone)}</td>
+                  </tr>
+                )
+              )
             )}
           </tbody>
         </S.EmployeesTable>

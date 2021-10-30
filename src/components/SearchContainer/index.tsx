@@ -6,13 +6,13 @@ import * as S from "./styles";
 
 export function SearchContainer() {
   const searchInput = useRef<HTMLInputElement | null>(null);
-  const { isLoading, searchEmployees, fetchEmployees } = useEmployee();
+  const { isLoading, fetchEmployees } = useEmployee();
 
   const handleSearch = () => {
     const inputValue = searchInput.current?.value.trim();
     if (!inputValue) return;
 
-    searchEmployees(inputValue);
+    fetchEmployees(`?q=${inputValue}`);
   };
 
   const handleResetSearch = () => {

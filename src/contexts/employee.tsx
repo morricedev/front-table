@@ -11,8 +11,7 @@ import { IEmployee } from "../types/employee";
 interface IEmployeeContext {
   employees: IEmployee[] | null;
   isLoading: boolean;
-  searchEmployees: (query: string) => void;
-  fetchEmployees: () => void;
+  fetchEmployees: (query?: string) => void;
 }
 
 export const EmployeeContext = createContext({} as IEmployeeContext);
@@ -25,20 +24,10 @@ export function EmployeeProvider({ children }: IEmployeeProviderProps) {
   const [employees, setEmployees] = useState<IEmployee[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const searchEmployees = useCallback((query: string) => {
+  const fetchEmployees = useCallback((query: string = "") => {
     setIsLoading(true);
     setTimeout(async () => {
-      const { data } = await api.get<IEmployee[]>(`employees?q=${query}`);
-
-      setEmployees(data);
-      setIsLoading(false);
-    }, 1500);
-  }, []);
-
-  const fetchEmployees = useCallback(() => {
-    setIsLoading(true);
-    setTimeout(async () => {
-      const { data } = await api.get<IEmployee[]>("employees");
+      const { data } = await api.get<IEmployee[]>(`employees${query}`);
 
       setEmployees(data);
       setIsLoading(false);
@@ -54,9 +43,7 @@ export function EmployeeProvider({ children }: IEmployeeProviderProps) {
   }, [fetchEmployees]);
 
   return (
-    <EmployeeContext.Provider
-      value={{ employees, isLoading, searchEmployees, fetchEmployees }}
-    >
+    <EmployeeContext.Provider value={{ employees, isLoading, fetchEmployees }}>
       {children}
     </EmployeeContext.Provider>
   );
